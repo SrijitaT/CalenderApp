@@ -6,7 +6,7 @@ const passport = require("passport");
 //@route GET api/events/
 //@desc List Events (If owner / If anyone has added to some event)
 //@access Private
-
+//Body params-none
 router.get(
   "/",
   passport.authenticate("jwt", { session: false }),
@@ -16,6 +16,7 @@ router.get(
 //@route GET api/events/search
 //@desc Filter Event by date
 //@access Private
+//Body params-startDateTime(reqd),endDateTime(reqd)
 router.get(
   "/search",
   passport.authenticate("jwt", { session: false }),
@@ -25,6 +26,7 @@ router.get(
 //@route POST api/events/
 //@desc Add Event
 //@access Private
+//Body params-Name,startDateTime,endDateTime,location,owner
 router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
@@ -34,6 +36,7 @@ router.post(
 //@route PUT api/events/:event_id
 //@desc Update Event
 //@access Private
+//Body params-name or startDateTime or endDateTime
 router.put(
   "/:event_id",
   passport.authenticate("jwt", { session: false }),
@@ -43,6 +46,7 @@ router.put(
 //@route PUT api/events/user/:event_id
 //@desc Update Users in Event
 //@access Private
+//Body params-updateUsersInEvent(Comma seperated string),action-add/remove
 router.put(
   "/user/:event_id",
   passport.authenticate("jwt", { session: false }),
