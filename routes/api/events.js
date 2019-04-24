@@ -26,7 +26,7 @@ router.get(
 //@route POST api/events/
 //@desc Add Event
 //@access Private
-//Body params-Name,startDateTime,endDateTime,location,owner
+//Body params-name,startDateTime,endDateTime,location,owner
 router.post(
   "/",
   passport.authenticate("jwt", { session: false }),

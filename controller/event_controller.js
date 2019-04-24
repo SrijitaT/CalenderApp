@@ -153,11 +153,14 @@ const updateEvent = async (req, res) => {
   const { event_id } = req.params;
   if (event_id) {
     try {
-      var eventRow = await Event.findOne({ _id: event_id });
+      var eventRow = await Event.findOne({
+        _id: event_id,
+        owner: req.user._id
+      });
     } catch (err) {
       return res.status(400).json({ msg: "No such event found!!" });
     }
-    if (eventRow.owner == req.user._id) {
+    if (eventRow) {
       const updInfo = {};
       let { name, startDateTime, endDateTime } = req.body;
       if (name) {
